@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {motion} from "motion/react";
+import type {TintProps} from "./CurrencyDropdown.types.ts";
 
 export const DropdownContainer = styled.div`
     position: relative;
@@ -11,7 +12,7 @@ export const Button = styled.button`
     align-items: center;
     column-gap: 0.5rem;
     width: fit-content;
-    
+
     position: relative;
     z-index: 2;
 
@@ -34,6 +35,11 @@ export const Button = styled.button`
         border: #393a68 2px solid;
 
         background-color: #22243c;
+    }
+
+    &:disabled {
+        border: #42434CFF 2px solid;
+        cursor: not-allowed;
     }
 `;
 
@@ -98,4 +104,19 @@ export const CountryList = styled.div`
     overflow-x: hidden;
     height: 144px;
     scrollbar-color: #2d2d53 #20223995;
+`;
+
+export const Tint = styled.div<TintProps>`
+    position: absolute;
+    left: 0;
+    top: 0;
+    
+    width: 100%;
+    height: 100%;
+
+    border-radius: 1rem;
+    
+    background-color: ${({$isDisabled}) => $isDisabled ? "#20223995" : "transparent"};
+    backdrop-filter: ${({$isDisabled}) => $isDisabled ? "grayscale(100%)" : "none"};
+    z-index: ${({$isDisabled}) => $isDisabled ? 4 : -1};
 `;
